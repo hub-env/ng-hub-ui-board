@@ -247,18 +247,22 @@ describe('HubBoardComponent', () => {
 	});
 
 	describe('Accessibility semantics', () => {
-		it('should expose list/group/listitem roles with labels and stable ids', () => {
+		it('should expose region/list/listitem roles with labels and stable ids', () => {
 			const host = fixture.nativeElement as HTMLElement;
-			expect(host.getAttribute('role')).toBe('list');
+			expect(host.getAttribute('role')).toBe('region');
 			expect(host.getAttribute('aria-label')).toBe('Board');
 
 			const containers = fixture.debugElement.queryAll(By.css('.hub-board__column-container'));
 			expect(containers.length).toBe(2);
-			expect(containers[0].attributes['role']).toBe('group');
-			expect(containers[0].attributes['aria-label']).toBe('Column 1');
-			expect(containers[0].attributes['id']).toBe(`${component.boardInstanceId}-column-1`);
-			expect(containers[1].attributes['aria-label']).toBe('Column 2');
-			expect(containers[1].attributes['id']).toBe(`${component.boardInstanceId}-column-2`);
+			expect(containers[0].attributes['role']).toBe('listitem');
+			expect(containers[1].attributes['role']).toBe('listitem');
+
+			const columns = fixture.debugElement.queryAll(By.css('.hub-board__column'));
+			expect(columns[0].attributes['role']).toBe('group');
+			expect(columns[0].attributes['aria-label']).toBe('Column 1');
+			expect(columns[0].attributes['id']).toBe(`${component.boardInstanceId}-column-1`);
+			expect(columns[1].attributes['aria-label']).toBe('Column 2');
+			expect(columns[1].attributes['id']).toBe(`${component.boardInstanceId}-column-2`);
 
 			const bodies = fixture.debugElement.queryAll(By.css('.hub-board__column-body'));
 			for (const body of bodies) {
@@ -270,6 +274,26 @@ describe('HubBoardComponent', () => {
 			for (const card of cards) {
 				expect(card.attributes['role']).toBe('listitem');
 			}
+		});
+
+		// The list of columns must own the columns themselves: a list whose only
+		// descendants are role-less wrappers is announced as a list with no items.
+		it('should own every column as an item of the board column list', () => {
+			const host = fixture.nativeElement as HTMLElement;
+			const columnList = host.querySelector('.hub-board__columns') as HTMLElement;
+
+			expect(columnList.getAttribute('role')).toBe('list');
+
+			const owned = Array.from(columnList.children);
+			expect(owned.length).toBe(2);
+			for (const child of owned) {
+				expect(child.getAttribute('role')).toBe('listitem');
+			}
+
+			// Neither the keyboard hint nor the announcer may sit inside the list,
+			// or the list would own elements that are not columns.
+			expect(columnList.querySelector('[aria-live]')).toBeNull();
+			expect(host.querySelector(`#${component.keyboardHintId}`)!.closest('[role="list"]')).toBeNull();
 		});
 
 		it('should honour a custom boardLabel', () => {

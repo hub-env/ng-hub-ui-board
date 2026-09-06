@@ -5,6 +5,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [22.5.2] - 2026-09-06
+
+### Changed
+
+- **`HubBoardComponent` now declares `ChangeDetectionStrategy.OnPush`.** Every value the template
+  reads is already a signal, and Angular 22 treats a component that names no strategy as OnPush, so
+  an application on the current major sees no change. The declaration is what carries the strategy
+  into the published package: this library is compiled in partial mode and its peer range still
+  admits Angular 18, and a pre-22 linker resolves an unstated strategy to `Eager` — so the consumers
+  furthest from the current major were the ones paying for a check on every tick. It also saves the
+  reader from having to infer the contract from the framework default of the day.
+
+### Fixed
+
+- **The columns are now the items of the board's list.** `role="list"` sat on the host, but its
+  children were two role-less wrappers, the hidden keyboard hint and the live region — never a
+  `listitem` — so the required-owned-elements chain broke and a screen reader read the board as a
+  list with no items. The list now lives on the columns track, each column container is its
+  `listitem`, and the column's group semantics (`role="group"`, its `aria-label` and its stable id)
+  moved onto the column itself, which leaves the hint and the announcer outside the list. The host
+  keeps its `aria-label` and becomes a `region`, so `boardLabel` still names the board and a
+  screen-reader user can reach it without the consumer adding a heading of their own.
+
+- **`BoardModule` now exports `CardDragPreviewDirective` and `ColumnDragPreviewDirective`.** Both are
+  public API and both are documented in the README with no caveat, but neither was in the module, so a
+  consumer who took the documented "Module Import (Legacy)" route got a `<ng-template cardDragPreview>`
+  that matched no directive. Nothing failed out loud — the template was simply ignored and the default
+  preview rendered — which is the worst way for an option to not work.
+
+- **The documentation now describes the component that ships.** Both READMEs promised things the
+  code does not do and hid things it does: a CC BY 4.0 licence the `22.5.0` relicense had already
+  replaced with MIT, a `@use 'ng-hub-ui-board/src/lib/styles/board.scss'` import of a file removed in
+  `21.1.0`, a card template bound to `let-card="card"` when the context key is `item` (so the
+  snippet rendered an empty card), `board` typed as `Signal<Board>` when the input takes a plain
+  `Board`, a `primary` default on a `variant` that has none, `EventEmitter` where the outputs are
+  `output()`, a `BoardColumn` block missing the very `predicate` the keyboard section relies on,
+  and a "virtual scrolling" feature that is only end-of-column detection. Each one is a reader
+  copying a line that fails to compile or silently renders nothing.
+
+- **`FUNCTIONALITIES.md` no longer lists a configurable scroll-detection padding.** It is a private
+  constant, not an input; the row promised an API that has never existed.
+
 ## [22.5.1] - 2026-09-01
 
 ### Changed
@@ -210,7 +252,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documented all available CSS variables in README.
 - Added `StylingBoardExampleComponent` to showcase custom styling capabilities.
 
-## [19.3.2] - 2025-01-15
+## [19.3.2] - 2026-01-15
 
 ### Changed
 

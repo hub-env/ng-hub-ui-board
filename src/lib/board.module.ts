@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { HubBoardComponent } from './components/board/board.component';
 import { BoardColumnFooterDirective } from './directives/board-column-footer.directive';
 import { BoardColumnHeaderDirective } from './directives/board-column-header.directive';
+import { CardDragPreviewDirective } from './directives/card-drag-preview.directive';
 import { CardPlaceholderDirective } from './directives/card-placeholder.directive';
 import { CardTemplateDirective } from './directives/card-template.directive';
+import { ColumnDragPreviewDirective } from './directives/column-drag-preview.directive';
 import { ColumnPlaceholderDirective } from './directives/column-placeholder.directive';
 
 /**
@@ -43,7 +45,9 @@ import { ColumnPlaceholderDirective } from './directives/column-placeholder.dire
 		BoardColumnHeaderDirective,
 		BoardColumnFooterDirective,
 		CardPlaceholderDirective,
-		ColumnPlaceholderDirective
+		ColumnPlaceholderDirective,
+		CardDragPreviewDirective,
+		ColumnDragPreviewDirective
 	],
 	exports: [
 		HubBoardComponent,
@@ -51,7 +55,9 @@ import { ColumnPlaceholderDirective } from './directives/column-placeholder.dire
 		BoardColumnHeaderDirective,
 		BoardColumnFooterDirective,
 		CardPlaceholderDirective,
-		ColumnPlaceholderDirective
+		ColumnPlaceholderDirective,
+		CardDragPreviewDirective,
+		ColumnDragPreviewDirective
 	]
 })
 export class BoardModule {}

@@ -1,6 +1,6 @@
 @if (columns().length) {
 	<div class="hub-board__drop-list" (dragover)="onBoardDragOver($event)" (drop)="onBoardDrop($event)">
-		<div class="hub-board__columns">
+		<div class="hub-board__columns" role="list">
 			@for (column of columns(); let index = $index; track trackColumnById($index, column)) {
 				<!-- Column placeholder (before column) -->
 				@if (shouldShowColumnDropIndicator(index)) {
@@ -15,21 +15,26 @@
 				}
 				<div
 					class="hub-board__column-container"
-					role="group"
+					role="listitem"
 					[class.hub-board__column-container--disabled]="column.disabled"
 					[class.hub-board__column-container--dragging-ghost]="isDraggingColumn(column) && dragBehavior() === 'ghost'"
 					[class.hub-board__column-container--dragging-hide]="isDraggingColumn(column) && dragBehavior() === 'hide'"
 					[class.hub-board__column-container--dragging-collapse]="
 						isDraggingColumn(column) && dragBehavior() === 'collapse'
 					"
-					[attr.id]="columnGroupId(index, column)"
-					[attr.aria-label]="column.title"
 					[attr.draggable]="!columnSortingDisabled() && !column.disabled"
 					[attr.data-column-index]="index"
 					(dragstart)="onColumnDragStart($event, column, index)"
 					(dragend)="onColumnDragEnd($event)"
 				>
-					<div class="hub-board__column" [ngClass]="column.classlist" [style]="column.style">
+					<div
+						class="hub-board__column"
+						role="group"
+						[ngClass]="column.classlist"
+						[style]="column.style"
+						[attr.id]="columnGroupId(index, column)"
+						[attr.aria-label]="column.title"
+					>
 						<div class="hub-board__column-header">
 							<ng-container
 								[ngTemplateOutlet]="columnHeaderTpt() || defaultColumnHeaderTpt"

@@ -10,8 +10,8 @@ This table details the functionalities of the `ng-hub-ui-board` library and indi
 | | Responsive Layout | ✅ |
 | **Interactions** | Card Drag & Drop (Same Column) | ✅ |
 | | Card Drag & Drop (Cross Column) | ✅ |
-| | Keyboard Card Reorder (Space/Enter grab & drop, arrows move, Escape cancel) | ❌ |
-| | Screen Reader Announcements (`aria-live` polite region) | ❌ |
+| | Keyboard Card Reorder (Space/Enter grab & drop, arrows move, Escape cancel) | ✅ |
+| | Screen Reader Announcements (`aria-live` polite region) | ✅ |
 | | Column Reordering | ✅ |
 | | Card Click Handling | ✅ |
 | | Infinite Scroll (Column Reach End) | ✅ |
@@ -19,8 +19,7 @@ This table details the functionalities of the `ng-hub-ui-board` library and indi
 | | Custom Column Header Template (`*columnHeaderTpt`) | ✅ |
 | | Custom Column Footer Template (`*columnFooterTpt`) | ✅ |
 | **Configuration** | Disable Column Sorting | ✅ |
-| | Custom Scroll Detection Padding | ✅ |
-| | Accessible Board Name (`boardLabel`) | ❌ |
+| | Accessible Board Name (`boardLabel`) | ✅ |
 
 ---
 *Note: ✅ indicates an active interactive example is available in the documentation. ❌ indicates functionality exists but no example yet.*

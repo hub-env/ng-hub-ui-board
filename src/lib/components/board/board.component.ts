@@ -1,5 +1,6 @@
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
+	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
 	Signal,
@@ -81,9 +82,10 @@ export type DragBehavior = 'ghost' | 'hide' | 'collapse';
 	templateUrl: './board.component.html',
 	styleUrl: './board.component.scss',
 	imports: [NgClass, NgTemplateOutlet],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'hub-board',
-		role: 'list',
+		role: 'region',
 		'[attr.aria-label]': 'boardLabel()',
 		'[attr.data-variant]': 'variant() ?? null',
 		'[style.--hub-board-accent]': 'groupAccent()'
@@ -103,6 +105,8 @@ export class HubBoardComponent {
 
 	/**
 	 * Accessible label exposed on the board container through `aria-label`.
+	 * It names the host landmark, so a screen-reader user can reach the board
+	 * without the consumer having to add a heading of their own.
 	 * Defaults to `'Board'`.
 	 */
 	readonly boardLabel = input<string>('Board');

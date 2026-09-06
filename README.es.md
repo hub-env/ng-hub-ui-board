@@ -52,7 +52,7 @@ Un componente de tablero flexible y potente para aplicaciones Angular, perfecto 
 - 📱 **Diseño responsive** - Funciona sin problemas en escritorio, tablet y dispositivos móviles
 - 🎭 **Altamente personalizable** - Plantillas personalizadas para tarjetas, cabeceras, pies de página e interacciones de arrastre
 - 🔧 **Compatible con Bootstrap** - Se integra perfectamente con el sistema de diseño de Bootstrap 5
-- ⚡ **Scroll virtual** - Soporta scroll infinito con detección de final para mejorar el rendimiento
+- ♾️ **Scroll infinito** - Detección de final de columna mediante la salida `reachedEnd`, para cargar más tarjetas bajo demanda
 - 🎨 **Estilado personalizado** - Propiedades personalizadas de CSS para temas y personalización sencilla
 - 🔒 **Control granular** - Habilita/deshabilita funcionalidades a nivel de tablero, columna o tarjeta
 - 🏷️ **Soporte de TypeScript** - Seguridad de tipos completa con interfaces genéricas
@@ -204,7 +204,7 @@ El componente utiliza varias plantillas para la personalización. Si usas el enf
 Se usa para personalizar cómo se renderiza cada tarjeta dentro de las columnas. Esta plantilla te da control total sobre la apariencia y la estructura de la tarjeta.
 
 ```html
-<ng-template cardTpt let-card="card">
+<ng-template cardTpt let-card="item">
 	<div class="custom-card">
 		<h3>{{ card.title }}</h3>
 		<p>{{ card.description }}</p>
@@ -326,7 +326,7 @@ Se emite cuando se hace clic en una tarjeta.
 <hub-board [board]="board" (onCardClick)="handleCardClick($event)"> </hub-board>
 ```
 
-**Tipo:** `EventEmitter<BoardCard>`
+**Tipo:** `OutputEmitterRef<BoardCard>`
 
 **Ejemplo:**
 
@@ -346,7 +346,7 @@ Se emite cuando una tarjeta se mueve, ya sea dentro de la misma columna o entre 
 <hub-board [board]="board" (onCardMoved)="handleCardMoved($event)"> </hub-board>
 ```
 
-**Tipo:** `EventEmitter<CardDragDropEvent>`
+**Tipo:** `OutputEmitterRef<CardDragDropEvent>`
 
 **Ejemplo:**
 
@@ -372,7 +372,7 @@ Se emite cuando una columna se reordena mediante arrastrar y soltar.
 <hub-board [board]="board" (onColumnMoved)="handleColumnMoved($event)"> </hub-board>
 ```
 
-**Tipo:** `EventEmitter<ColumnDragDropEvent>`
+**Tipo:** `OutputEmitterRef<ColumnDragDropEvent>`
 
 **Ejemplo:**
 
@@ -396,7 +396,7 @@ Se emite cuando un usuario hace scroll hasta el final de una columna. Útil para
 </div>
 ```
 
-**Tipo:** `EventEmitter<ReachedEndEvent<BoardColumn>>`
+**Tipo:** `OutputEmitterRef<ReachedEndEvent<BoardColumn>>`
 
 **Estructura del evento:**
 
@@ -441,7 +441,7 @@ loadMoreCards(event: ReachedEndEvent) {
 
 ## Teclado y accesibilidad
 
-El tablero expone semántica ARIA de lista: el host es un `role="list"` nombrado por el input `boardLabel` (por defecto `'Board'`), cada columna es un `role="group"` etiquetado, cada cuerpo de columna es un `role="list"` y cada tarjeta un `role="listitem"`.
+El tablero expone semántica ARIA de lista: el host es un `role="region"` nombrado por el input `boardLabel` (por defecto `'Board'`), la pista de columnas que contiene es un `role="list"` cuyos elementos son las columnas (`role="listitem"`), cada columna es un `role="group"` etiquetado, cada cuerpo de columna es un `role="list"` y cada tarjeta un `role="listitem"`.
 
 Las tarjetas pueden reordenarse sin puntero — cada tarjeta habilitada es una parada de tabulación. Con una tarjeta enfocada:
 
@@ -458,22 +458,22 @@ Los siguientes inputs están disponibles en el `HubBoardComponent`:
 
 | Input                   | Tipo            | Descripción                                                                                                                  | Por defecto  |
 | ----------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| `board`                 | `Signal<Board>` | El objeto del tablero que contiene las columnas y las tarjetas                                                               | `undefined`  |
-| `boardLabel`            | `string`        | Nombre accesible (`aria-label`) del contenedor de lista del tablero                                                          | `'Board'`    |
+| `board`                 | `Board`         | El objeto del tablero que contiene las columnas y las tarjetas                                                               | `undefined`  |
+| `boardLabel`            | `string`        | Nombre accesible (`aria-label`) del contenedor del tablero                                                          | `'Board'`    |
 | `columnSortingDisabled` | `boolean`       | Deshabilita la ordenación de columnas mediante arrastrar y soltar                                                            | `false`      |
 | `dragBehavior`          | `DragBehavior`  | Controla cómo se comportan visualmente los elementos arrastrados: `'ghost'` (semitransparente), `'hide'` o `'collapse'`      | `'collapse'` |
-| `variant`               | `string`        | Acento semántico del marcador de posición de arrastrar y soltar. Los valores integrados (`'primary'` / `'success'` / `'danger'` / `'warning'` / `'info'`) usan los tintes exactos del sistema de diseño; también se acepta cualquier otra cadena — el tablero lee `--hub-sys-color-<variant>` de la aplicación anfitriona | `'primary'`  |
+| `variant`               | `string`        | Acento semántico del marcador de posición de arrastrar y soltar. Los valores integrados (`'primary'` / `'success'` / `'danger'` / `'warning'` / `'info'`) usan los tintes exactos del sistema de diseño; cualquier otra palabra suelta se lee como `--hub-sys-color-<variant>` de la aplicación anfitriona, y un color literal (`#hex`, `rgb()`, `oklch()`, `var()`) se pasa tal cual | `undefined`  |
 
 ## Outputs
 
 Estos outputs son emitidos por el componente durante la interacción del usuario:
 
-| Output          | Tipo                                | Descripción                                                                          |
-| --------------- | ----------------------------------- | ------------------------------------------------------------------------------------ |
-| `onCardClick`   | `EventEmitter<BoardCard>`           | Se dispara cuando se hace clic en una tarjeta                                         |
-| `onCardMoved`   | `EventEmitter<CardDragDropEvent>`   | Se emite cuando se mueve una tarjeta (dentro de una columna o entre columnas)         |
-| `onColumnMoved` | `EventEmitter<ColumnDragDropEvent>` | Se emite cuando una columna se reordena mediante arrastrar y soltar                   |
-| `reachedEnd`    | `EventEmitter<ReachedEndEvent>`     | Se dispara cuando el usuario hace scroll hasta el final de una columna (carga diferida) |
+| Output          | Tipo                                    | Descripción                                                                          |
+| --------------- | --------------------------------------- | ------------------------------------------------------------------------------------ |
+| `onCardClick`   | `OutputEmitterRef<BoardCard>`           | Se dispara cuando se hace clic en una tarjeta                                         |
+| `onCardMoved`   | `OutputEmitterRef<CardDragDropEvent>`   | Se emite cuando se mueve una tarjeta (dentro de una columna o entre columnas)         |
+| `onColumnMoved` | `OutputEmitterRef<ColumnDragDropEvent>` | Se emite cuando una columna se reordena mediante arrastrar y soltar                   |
+| `reachedEnd`    | `OutputEmitterRef<ReachedEndEvent>`     | Se dispara cuando el usuario hace scroll hasta el final de una columna (carga diferida) |
 
 ## Interfaces
 
@@ -506,7 +506,9 @@ interface BoardColumn<T = any> {
 	style?: { [key: string]: any };
 	classlist?: string[] | string;
 	disabled?: boolean;
+	data?: any;
 	cardSortingDisabled?: boolean;
+	predicate?: (item?: BoardDragItem<T>) => boolean;
 }
 ```
 
@@ -581,11 +583,7 @@ type DragBehavior = 'ghost' | 'hide' | 'collapse';
 
 Para consultar el catálogo de tokens completo y actualizado, consulta la [Referencia de variables CSS](./docs/css-variables-reference.md).
 
-### 🔗 Importar estilos
-
-```scss
-@use 'ng-hub-ui-board/src/lib/styles/board.scss';
-```
+No hay ninguna hoja de estilos que importar: desde `21.1.0` los estilos están encapsulados en el propio componente. Si tu `styles.scss` global todavía arrastra `@use 'ng-hub-ui-board/src/lib/styles/board.scss'` de una versión anterior, bórralo — ese fichero ya no se publica. El punto de entrada `ng-hub-ui-board/styles` existe solo para el mixin de tema de Sass que se describe más abajo y no emite CSS por sí mismo.
 
 ### 🎨 Acento semántico (`variant`)
 
@@ -595,7 +593,7 @@ El marcador de posición de arrastrar y soltar se controla mediante un único to
 <hub-board [board]="board()" variant="success"></hub-board>
 ```
 
-Las variantes integradas (`primary` / `success` / `danger` / `warning` / `info`) usan los tintes exactos del sistema de diseño. También se acepta cualquier otra cadena — el tablero lee `--hub-sys-color-<variant>` de la aplicación anfitriona, de modo que una paleta de acentos personalizada se integra sin cambios en esta biblioteca. Por defecto es `primary`.
+Las variantes integradas (`primary` / `success` / `danger` / `warning` / `info`) usan los tintes exactos del sistema de diseño. También se acepta cualquier otra palabra suelta — el tablero lee `--hub-sys-color-<variant>` de la aplicación anfitriona, de modo que una paleta de acentos personalizada se integra sin cambios en esta biblioteca — y desde `22.3.0` un color literal (`#hex`, `rgb()`, `oklch()`, `var()`) se pasa tal cual. El input no tiene valor por defecto; si no se indica `variant`, el marcador de posición conserva el acento primario.
 
 Internamente, esto rebasa el nuevo token `--hub-board-accent` (y su tinte sutil `--hub-board-accent-subtle`, derivado mediante `color-mix`), a través del cual se resuelven los colores de borde y fondo del marcador de posición:
 
@@ -676,10 +674,7 @@ Aquí tienes algunos problemas comunes y cómo resolverlos:
 
 ### 🎨 Los estilos no se aplican
 
-- **Ruta de importación**: Confirma que has importado los estilos base SCSS en tu `styles.scss` global:
-    ```scss
-    @use 'ng-hub-ui-board/src/lib/styles/board.scss';
-    ```
+- **No hay nada que importar**: el componente se estila solo. Si tu `styles.scss` global todavía tiene `@use 'ng-hub-ui-board/src/lib/styles/board.scss'` de una versión anterior a la `21.1.0`, bórralo — ese fichero ya no se publica.
 - **Propiedades personalizadas de CSS**: Comprueba que tus variables CSS personalizadas siguen la convención de nomenclatura `--hub-*`
 - **Especificidad de los estilos**: Asegúrate de que tus estilos personalizados tienen suficiente especificidad para sobrescribir los valores por defecto
 
@@ -728,32 +723,9 @@ Si este proyecto te resulta útil y quieres apoyar su desarrollo, puedes invitar
 
 ## Licencia
 
-Este proyecto está licenciado bajo la **Creative Commons Attribution 4.0 International License (CC BY 4.0)**.
+MIT © [Carlos Morcillo](https://www.carlosmorcillo.com)
 
-### Qué significa esto:
-
-✅ **Puedes:**
-
-- Usarlo comercial y no comercialmente
-- Modificarlo, adaptarlo y crear derivados
-- Distribuirlo y redistribuirlo en cualquier formato
-- Usarlo en proyectos privados y públicos
-
-📋 **Debes:**
-
-- Dar el crédito apropiado a los autores originales
-- Proporcionar un enlace a la licencia
-- Indicar si se han realizado cambios
-
-### Ejemplo de atribución:
-
-```
-Based on ng-hub-ui-board by [Carlos Morcillo](https://www.carlosmorcillo.com)
-Original: https://github.com/carlos-morcillo/ng-hub-ui-board
-License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
-```
-
-Para los detalles completos de la licencia, consulta el archivo [LICENSE](LICENSE).
+Se relicenció desde CC BY 4.0 en la `22.5.0`; las versiones publicadas antes conservan la licencia con la que salieron. Para los detalles completos, consulta el archivo [LICENSE](LICENSE).
 
 ---
 
