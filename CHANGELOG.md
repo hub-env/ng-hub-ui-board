@@ -252,7 +252,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documented all available CSS variables in README.
 - Added `StylingBoardExampleComponent` to showcase custom styling capabilities.
 
-## [19.3.2] - 2026-01-15
+## [19.3.2] - 2025-10-15
 
 ### Changed
 
@@ -264,7 +264,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Corrected misleading `reachedEnd` event documentation that incorrectly showed direct access to `event.data.title` instead of extracting the column first
 
-## [19.3.1] - 2024-10-05
+## [19.3.1] - 2025-10-15
 
 ### Added
 
