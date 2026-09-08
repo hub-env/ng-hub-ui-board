@@ -1,12 +1,12 @@
 import { Component, NgModule, viewChild } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { BoardModule } from './board.module';
+import { HubBoardModule } from './board.module';
 import { HubBoardComponent } from './components/board/board.component';
 
 /**
  * Host that consumes the board the way the README's "Module Import (Legacy)" section
  * does: a component declared in an NgModule whose only board-related import is
- * `BoardModule`. Any template directive missing from the module's exports silently
+ * `HubBoardModule`. Any template directive missing from the module's exports silently
  * fails to match here, leaving the matching `contentChild` undefined.
  */
 @Component({
@@ -25,11 +25,11 @@ class BoardModuleHostComponent {
 
 @NgModule({
 	declarations: [BoardModuleHostComponent],
-	imports: [BoardModule]
+	imports: [HubBoardModule]
 })
 class BoardModuleHostModule {}
 
-describe('BoardModule', () => {
+describe('HubBoardModule', () => {
 	it('matches the drag preview templates it documents', async () => {
 		await TestBed.configureTestingModule({
 			imports: [BoardModuleHostModule]

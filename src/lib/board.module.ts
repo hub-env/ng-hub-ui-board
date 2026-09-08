@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { HubBoardComponent } from './components/board/board.component';
-import { BoardColumnFooterDirective } from './directives/board-column-footer.directive';
-import { BoardColumnHeaderDirective } from './directives/board-column-header.directive';
-import { CardDragPreviewDirective } from './directives/card-drag-preview.directive';
-import { CardPlaceholderDirective } from './directives/card-placeholder.directive';
-import { CardTemplateDirective } from './directives/card-template.directive';
-import { ColumnDragPreviewDirective } from './directives/column-drag-preview.directive';
-import { ColumnPlaceholderDirective } from './directives/column-placeholder.directive';
+import { HubBoardColumnFooterDirective } from './directives/board-column-footer.directive';
+import { HubBoardColumnHeaderDirective } from './directives/board-column-header.directive';
+import { HubCardDragPreviewDirective } from './directives/card-drag-preview.directive';
+import { HubCardPlaceholderDirective } from './directives/card-placeholder.directive';
+import { HubCardTemplateDirective } from './directives/card-template.directive';
+import { HubColumnDragPreviewDirective } from './directives/column-drag-preview.directive';
+import { HubColumnPlaceholderDirective } from './directives/column-placeholder.directive';
 
 /**
  * Angular module that provides board functionality with drag-and-drop support.
@@ -20,19 +20,19 @@ import { ColumnPlaceholderDirective } from './directives/column-placeholder.dire
  * @example
  * ```typescript
  * // Legacy module approach (not recommended)
- * import { BoardModule } from 'ng-hub-ui-board';
+ * import { HubBoardModule } from 'ng-hub-ui-board';
  *
  * @NgModule({
- *   imports: [BoardModule]
+ *   imports: [HubBoardModule]
  * })
  * export class AppModule {}
  *
  * // Recommended standalone approach
- * import { HubBoardComponent, CardTemplateDirective } from 'ng-hub-ui-board';
+ * import { HubBoardComponent, HubCardTemplateDirective } from 'ng-hub-ui-board';
  *
  * @Component({
  *   standalone: true,
- *   imports: [HubBoardComponent, CardTemplateDirective]
+ *   imports: [HubBoardComponent, HubCardTemplateDirective]
  * })
  * export class MyComponent {}
  * ```
@@ -41,23 +41,23 @@ import { ColumnPlaceholderDirective } from './directives/column-placeholder.dire
 	declarations: [],
 	imports: [
 		HubBoardComponent,
-		CardTemplateDirective,
-		BoardColumnHeaderDirective,
-		BoardColumnFooterDirective,
-		CardPlaceholderDirective,
-		ColumnPlaceholderDirective,
-		CardDragPreviewDirective,
-		ColumnDragPreviewDirective
+		HubCardTemplateDirective,
+		HubBoardColumnHeaderDirective,
+		HubBoardColumnFooterDirective,
+		HubCardPlaceholderDirective,
+		HubColumnPlaceholderDirective,
+		HubCardDragPreviewDirective,
+		HubColumnDragPreviewDirective
 	],
 	exports: [
 		HubBoardComponent,
-		CardTemplateDirective,
-		BoardColumnHeaderDirective,
-		BoardColumnFooterDirective,
-		CardPlaceholderDirective,
-		ColumnPlaceholderDirective,
-		CardDragPreviewDirective,
-		ColumnDragPreviewDirective
+		HubCardTemplateDirective,
+		HubBoardColumnHeaderDirective,
+		HubBoardColumnFooterDirective,
+		HubCardPlaceholderDirective,
+		HubColumnPlaceholderDirective,
+		HubCardDragPreviewDirective,
+		HubColumnDragPreviewDirective
 	]
 })
-export class BoardModule {}
+export class HubBoardModule {}

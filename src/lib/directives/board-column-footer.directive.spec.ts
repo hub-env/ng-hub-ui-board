@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, TemplateRef, viewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoardColumnFooterDirective } from './board-column-footer.directive';
+import { HubBoardColumnFooterDirective } from './board-column-footer.directive';
 
 /**
  * Test component to verify the directive functionality
@@ -69,16 +69,16 @@ import { BoardColumnFooterDirective } from './board-column-footer.directive';
 		</ng-template>
 	`,
 	standalone: true,
-	imports: [BoardColumnFooterDirective, DatePipe]
+	imports: [HubBoardColumnFooterDirective, DatePipe]
 })
 class TestComponent {
-	readonly footerDirective = viewChild.required('footerTemplate', { read: BoardColumnFooterDirective });
+	readonly footerDirective = viewChild.required('footerTemplate', { read: HubBoardColumnFooterDirective });
 
 	readonly templateRef = viewChild.required('footerTemplate', { read: TemplateRef });
 
-	readonly simpleFooterDirective = viewChild.required('simpleFooterTemplate', { read: BoardColumnFooterDirective });
+	readonly simpleFooterDirective = viewChild.required('simpleFooterTemplate', { read: HubBoardColumnFooterDirective });
 
-	readonly statsFooterDirective = viewChild.required('statsFooterTemplate', { read: BoardColumnFooterDirective });
+	readonly statsFooterDirective = viewChild.required('statsFooterTemplate', { read: HubBoardColumnFooterDirective });
 
 	readonly regularTemplateRef = viewChild.required('regularTemplate', { read: TemplateRef });
 
@@ -126,10 +126,10 @@ class TestComponent {
 	}
 }
 
-describe('BoardColumnFooterDirective', () => {
+describe('HubBoardColumnFooterDirective', () => {
 	let component: TestComponent;
 	let fixture: ComponentFixture<TestComponent>;
-	let directive: BoardColumnFooterDirective;
+	let directive: HubBoardColumnFooterDirective;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -147,8 +147,8 @@ describe('BoardColumnFooterDirective', () => {
 			expect(directive).toBeTruthy();
 		});
 
-		it('should be a BoardColumnFooterDirective instance', () => {
-			expect(directive).toBeInstanceOf(BoardColumnFooterDirective);
+		it('should be a HubBoardColumnFooterDirective instance', () => {
+			expect(directive).toBeInstanceOf(HubBoardColumnFooterDirective);
 		});
 
 		it('should have templateRef property', () => {

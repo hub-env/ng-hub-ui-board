@@ -5,6 +5,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [22.6.0] - 2026-09-08
+
+### Changed
+
+- **BREAKING — the module and the seven template directives are renamed with the `Hub` prefix.**
+  `BoardModule` becomes `HubBoardModule`, and `CardTemplateDirective`,
+  `BoardColumnHeaderDirective`, `BoardColumnFooterDirective`, `CardPlaceholderDirective`,
+  `ColumnPlaceholderDirective`, `CardDragPreviewDirective` and `ColumnDragPreviewDirective` gain the
+  same prefix. `CardTemplateDirective` is a name any application with cards in it will want, and an
+  unprefixed export claims it inside the consumer's namespace rather than the library's: the file
+  that imports ours and declares its own is left aliasing its way out of a collision it did not
+  create. `HubBoardComponent` already carried the prefix, so the component and the directives that
+  exist only to feed it were spelled two ways in one import list. The selectors — `cardTpt`,
+  `columnHeaderTpt`, `columnFooterTpt`, `cardPlaceholder`, `columnPlaceholder`, `cardDragPreview`,
+  `columnDragPreview` — are untouched, so no markup changes. All eight old names stay exported as
+  deprecated aliases resolving to the same classes and are removed in 23.0.0. See
+  `BREAKING_CHANGES.md`.
+
+- **BREAKING — the colour pipe is `HubBoardInvertColorPipe`, and answers to `hubBoardInvertColor` in
+  a template.** A pipe's template name is the one part a consumer cannot rename around, and
+  `invertColor` took an unprefixed name in the application's own template namespace; two pipes
+  registered under one name in a component is a compile error neither side can settle. The prefix
+  alone would not have been enough, since `ng-hub-ui-forms` already publishes `HubInvertColorPipe`
+  under `hubInvertColor`, so the library's name goes in the middle. `InvertColorPipe` survives as a
+  deprecated subclass still answering to `invertColor` — a pipe's name travels with its class, so
+  compatibility here needs a second class rather than a second export — and is removed in 23.0.0.
+  Migrating means changing the template as well as the import. See `BREAKING_CHANGES.md`.
+
+- **`ng-hub-ui-ds` is declared as an optional peer dependency, `>=22.0.0`.** The stylesheet has
+  themed against `--hub-sys-*` for several releases, every read already carrying its own fallback,
+  and the manifest never said so: nothing warned that a `ng-hub-ui-ds` older than the `--hub-ref-*` /
+  `--hub-sys-*` architecture would leave the board on those fallbacks, and a reader of the manifest
+  had no way to learn that the token package is what turns the theme on. `peerDependenciesMeta`
+  marks it optional, so an installation without it stays clean. No code, types or styles change.
+
+### Fixed
+
+- **Both READMEs name the classes that ship.** Every import block, every section heading and the
+  legacy-module snippet still used the old names, so a reader copying the documented import wrote
+  code that compiles only against the deprecated aliases — precisely the audience this rename exists
+  to move.
+
 ## [22.5.2] - 2026-09-06
 
 ### Changed

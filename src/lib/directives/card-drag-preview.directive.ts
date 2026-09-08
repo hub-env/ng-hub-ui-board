@@ -25,9 +25,9 @@ import { Directive, TemplateRef } from '@angular/core';
 	selector: '[cardDragPreview]',
 	standalone: true
 })
-export class CardDragPreviewDirective {
+export class HubCardDragPreviewDirective {
 	/**
-	 * Creates a new CardDragPreviewDirective instance.
+	 * Creates a new HubCardDragPreviewDirective instance.
 	 *
 	 * @param templateRef - The template reference that contains the custom drag preview layout
 	 */

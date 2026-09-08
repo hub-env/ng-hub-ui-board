@@ -1,6 +1,6 @@
 import { Component, TemplateRef, viewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BoardColumnHeaderDirective } from './board-column-header.directive';
+import { HubBoardColumnHeaderDirective } from './board-column-header.directive';
 
 /**
  * Test component to verify the directive functionality
@@ -49,16 +49,16 @@ import { BoardColumnHeaderDirective } from './board-column-header.directive';
 		</ng-template>
 	`,
 	standalone: true,
-	imports: [BoardColumnHeaderDirective]
+	imports: [HubBoardColumnHeaderDirective]
 })
 class TestComponent {
-	readonly headerDirective = viewChild.required('headerTemplate', { read: BoardColumnHeaderDirective });
+	readonly headerDirective = viewChild.required('headerTemplate', { read: HubBoardColumnHeaderDirective });
 
 	readonly templateRef = viewChild.required('headerTemplate', { read: TemplateRef });
 
-	readonly simpleHeaderDirective = viewChild.required('simpleHeaderTemplate', { read: BoardColumnHeaderDirective });
+	readonly simpleHeaderDirective = viewChild.required('simpleHeaderTemplate', { read: HubBoardColumnHeaderDirective });
 
-	readonly emptyHeaderDirective = viewChild.required('emptyHeaderTemplate', { read: BoardColumnHeaderDirective });
+	readonly emptyHeaderDirective = viewChild.required('emptyHeaderTemplate', { read: HubBoardColumnHeaderDirective });
 
 	readonly regularTemplateRef = viewChild.required('regularTemplate', { read: TemplateRef });
 
@@ -94,10 +94,10 @@ class TestComponent {
 	};
 }
 
-describe('BoardColumnHeaderDirective', () => {
+describe('HubBoardColumnHeaderDirective', () => {
 	let component: TestComponent;
 	let fixture: ComponentFixture<TestComponent>;
-	let directive: BoardColumnHeaderDirective;
+	let directive: HubBoardColumnHeaderDirective;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -115,8 +115,8 @@ describe('BoardColumnHeaderDirective', () => {
 			expect(directive).toBeTruthy();
 		});
 
-		it('should be a BoardColumnHeaderDirective instance', () => {
-			expect(directive).toBeInstanceOf(BoardColumnHeaderDirective);
+		it('should be a HubBoardColumnHeaderDirective instance', () => {
+			expect(directive).toBeInstanceOf(HubBoardColumnHeaderDirective);
 		});
 
 		it('should have templateRef property', () => {

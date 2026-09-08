@@ -74,6 +74,8 @@ yarn add ng-hub-ui-board ng-hub-ui-utils
 
 **Nota:** `@angular/cdk` no es necesario. El tablero usa el núcleo nativo de arrastrar y soltar de `ng-hub-ui-utils` (una peer dependency obligatoria desde `22.1.0`) — no hay dependencias de UI de terceros ni CDK.
 
+`ng-hub-ui-ds` es una peer dependency **opcional** (`>=22.0.0`). Instálala para dar al tablero la paleta compartida de tokens `--hub-sys-*` y el modo oscuro; sin ella cada lectura de token cae en su valor por defecto y el tablero se dibuja igual.
+
 ## Inicio rápido
 
 Aquí tienes un ejemplo rápido para empezar con `ng-hub-ui-board` usando el enfoque de componente standalone.
@@ -112,16 +114,16 @@ export const board = signal<Board>({
 import { Component } from '@angular/core';
 import {
 	HubBoardComponent,
-	CardTemplateDirective,
-	BoardColumnHeaderDirective,
-	BoardColumnFooterDirective,
+	HubCardTemplateDirective,
+	HubBoardColumnHeaderDirective,
+	HubBoardColumnFooterDirective,
 	BoardCard
 } from 'ng-hub-ui-board';
 
 @Component({
 	selector: 'board-demo',
 	standalone: true,
-	imports: [HubBoardComponent, CardTemplateDirective, BoardColumnHeaderDirective, BoardColumnFooterDirective],
+	imports: [HubBoardComponent, HubCardTemplateDirective, HubBoardColumnHeaderDirective, HubBoardColumnFooterDirective],
 	templateUrl: './board-demo.component.html'
 })
 export class BoardDemoComponent {
@@ -160,15 +162,15 @@ El componente se puede utilizar de dos maneras:
 import { Component } from '@angular/core';
 import {
 	HubBoardComponent,
-	CardTemplateDirective,
-	BoardColumnHeaderDirective,
-	BoardColumnFooterDirective
+	HubCardTemplateDirective,
+	HubBoardColumnHeaderDirective,
+	HubBoardColumnFooterDirective
 } from 'ng-hub-ui-board';
 
 @Component({
 	selector: 'app-my-component',
 	standalone: true,
-	imports: [HubBoardComponent, CardTemplateDirective, BoardColumnHeaderDirective, BoardColumnFooterDirective],
+	imports: [HubBoardComponent, HubCardTemplateDirective, HubBoardColumnHeaderDirective, HubBoardColumnFooterDirective],
 	template: `
 		<hub-board [board]="board" (onCardClick)="handleCardClick($event)" (onCardMoved)="handleCardMoved($event)">
 			<!-- Las plantillas van aquí -->
@@ -184,10 +186,10 @@ export class MyComponent {
 
 ```typescript
 import { NgModule } from '@angular/core';
-import { BoardModule } from 'ng-hub-ui-board';
+import { HubBoardModule } from 'ng-hub-ui-board';
 
 @NgModule({
-	imports: [BoardModule]
+	imports: [HubBoardModule]
 	// ... resto de la configuración del módulo
 })
 export class AppModule {}
@@ -199,7 +201,7 @@ El componente utiliza varias plantillas para la personalización. Si usas el enf
 
 ### Plantillas estándar
 
-### Plantilla de tarjeta (CardTemplateDirective)
+### Plantilla de tarjeta (HubCardTemplateDirective)
 
 Se usa para personalizar cómo se renderiza cada tarjeta dentro de las columnas. Esta plantilla te da control total sobre la apariencia y la estructura de la tarjeta.
 
@@ -216,7 +218,7 @@ Se usa para personalizar cómo se renderiza cada tarjeta dentro de las columnas.
 </ng-template>
 ```
 
-### Plantilla de cabecera de columna (BoardColumnHeaderDirective)
+### Plantilla de cabecera de columna (HubBoardColumnHeaderDirective)
 
 Se usa para personalizar la cabecera de cada columna. Perfecta para añadir acciones específicas de la columna, mostrar recuentos de tarjetas o añadir opciones de filtrado.
 
@@ -233,7 +235,7 @@ Se usa para personalizar la cabecera de cada columna. Perfecta para añadir acci
 </ng-template>
 ```
 
-### Plantilla de pie de columna (BoardColumnFooterDirective)
+### Plantilla de pie de columna (HubBoardColumnFooterDirective)
 
 Se usa para añadir un pie de página a cada columna. Útil para información de resumen, acciones rápidas o controles específicos de la columna.
 
@@ -251,7 +253,7 @@ Se usa para añadir un pie de página a cada columna. Útil para información de
 
 ### Plantillas de arrastrar y soltar
 
-#### Plantilla de previsualización de arrastre de tarjeta (CardDragPreviewDirective)
+#### Plantilla de previsualización de arrastre de tarjeta (HubCardDragPreviewDirective)
 
 Personaliza el elemento visual que sigue al cursor al arrastrar tarjetas. La plantilla recibe la tarjeta arrastrada y su columna de origen como contexto.
 
@@ -272,7 +274,7 @@ Personaliza el elemento visual que sigue al cursor al arrastrar tarjetas. La pla
 - `card`: La tarjeta que se está arrastrando
 - `column`: La columna de origen de la tarjeta
 
-#### Plantilla de marcador de posición de tarjeta (CardPlaceholderDirective)
+#### Plantilla de marcador de posición de tarjeta (HubCardPlaceholderDirective)
 
 Personaliza la apariencia de la zona de destino al arrastrar tarjetas entre columnas o dentro de ellas.
 
@@ -285,7 +287,7 @@ Personaliza la apariencia de la zona de destino al arrastrar tarjetas entre colu
 </ng-template>
 ```
 
-#### Plantilla de previsualización de arrastre de columna (ColumnDragPreviewDirective)
+#### Plantilla de previsualización de arrastre de columna (HubColumnDragPreviewDirective)
 
 Personaliza el elemento visual que sigue al cursor al arrastrar columnas. La plantilla recibe la columna arrastrada como contexto.
 
@@ -302,7 +304,7 @@ Personaliza el elemento visual que sigue al cursor al arrastrar columnas. La pla
 
 - `column`: La columna que se está arrastrando
 
-#### Plantilla de marcador de posición de columna (ColumnPlaceholderDirective)
+#### Plantilla de marcador de posición de columna (HubColumnPlaceholderDirective)
 
 Personaliza la apariencia de la zona de destino al reordenar columnas.
 
@@ -682,7 +684,7 @@ Aquí tienes algunos problemas comunes y cómo resolverlos:
 
 - **Importa las directivas**: Cuando uses componentes standalone, importa las directivas de plantilla:
     ```typescript
-    imports: [HubBoardComponent, CardTemplateDirective, BoardColumnHeaderDirective];
+    imports: [HubBoardComponent, HubCardTemplateDirective, HubBoardColumnHeaderDirective];
     ```
 - **Sintaxis de plantilla**: Verifica que estás usando los selectores de plantilla correctos (`cardTpt`, `columnHeaderTpt`, `columnFooterTpt`)
 

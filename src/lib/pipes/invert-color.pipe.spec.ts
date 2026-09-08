@@ -1,10 +1,10 @@
-import { InvertColorPipe } from './invert-color.pipe';
+import { HubBoardInvertColorPipe } from './invert-color.pipe';
 
-describe('InvertColorPipe', () => {
-	let pipe: InvertColorPipe;
+describe('HubBoardInvertColorPipe', () => {
+	let pipe: HubBoardInvertColorPipe;
 
 	beforeEach(() => {
-		pipe = new InvertColorPipe();
+		pipe = new HubBoardInvertColorPipe();
 	});
 
 	it('should create an instance', () => {

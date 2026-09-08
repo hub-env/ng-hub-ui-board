@@ -24,9 +24,9 @@ import { Directive, TemplateRef } from '@angular/core';
 	selector: '[columnHeaderTpt]',
 	standalone: true
 })
-export class BoardColumnHeaderDirective {
+export class HubBoardColumnHeaderDirective {
 	/**
-	 * Creates a new BoardColumnHeaderDirective instance.
+	 * Creates a new HubBoardColumnHeaderDirective instance.
 	 *
 	 * @param templateRef - The template reference that contains the custom column header layout
 	 */

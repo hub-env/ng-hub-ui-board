@@ -13,13 +13,13 @@ import {
 	signal,
 	viewChild
 } from '@angular/core';
-import { BoardColumnFooterDirective } from '../../directives/board-column-footer.directive';
-import { BoardColumnHeaderDirective } from '../../directives/board-column-header.directive';
-import { CardDragPreviewDirective } from '../../directives/card-drag-preview.directive';
-import { CardPlaceholderDirective } from '../../directives/card-placeholder.directive';
-import { CardTemplateDirective } from '../../directives/card-template.directive';
-import { ColumnDragPreviewDirective } from '../../directives/column-drag-preview.directive';
-import { ColumnPlaceholderDirective } from '../../directives/column-placeholder.directive';
+import { HubBoardColumnFooterDirective } from '../../directives/board-column-footer.directive';
+import { HubBoardColumnHeaderDirective } from '../../directives/board-column-header.directive';
+import { HubCardDragPreviewDirective } from '../../directives/card-drag-preview.directive';
+import { HubCardPlaceholderDirective } from '../../directives/card-placeholder.directive';
+import { HubCardTemplateDirective } from '../../directives/card-template.directive';
+import { HubColumnDragPreviewDirective } from '../../directives/column-drag-preview.directive';
+import { HubColumnPlaceholderDirective } from '../../directives/column-placeholder.directive';
 import { Board } from '../../models/board';
 import { BoardCard } from '../../models/board-card';
 import { BoardColumn } from '../../models/board-column';
@@ -181,21 +181,21 @@ export class HubBoardComponent {
 	/**
 	 * Custom card template supplied via the `cardTpt` structural directive.
 	 */
-	readonly cardTpt = contentChild(CardTemplateDirective, {
+	readonly cardTpt = contentChild(HubCardTemplateDirective, {
 		read: TemplateRef<unknown>
 	});
 
 	/**
 	 * Custom column header template supplied via the `columnHeaderTpt` structural directive.
 	 */
-	readonly columnHeaderTpt = contentChild(BoardColumnHeaderDirective, {
+	readonly columnHeaderTpt = contentChild(HubBoardColumnHeaderDirective, {
 		read: TemplateRef<unknown>
 	});
 
 	/**
 	 * Custom column footer template supplied via the `columnFooterTpt` structural directive.
 	 */
-	readonly columnFooterTpt = contentChild(BoardColumnFooterDirective, {
+	readonly columnFooterTpt = contentChild(HubBoardColumnFooterDirective, {
 		read: TemplateRef<unknown>
 	});
 
@@ -203,7 +203,7 @@ export class HubBoardComponent {
 	 * Custom card placeholder template supplied via the `cardPlaceholder` structural directive.
 	 * Used to customize the appearance of the drop zone when dragging cards.
 	 */
-	readonly cardPlaceholderTpt = contentChild(CardPlaceholderDirective, {
+	readonly cardPlaceholderTpt = contentChild(HubCardPlaceholderDirective, {
 		read: TemplateRef<unknown>
 	});
 
@@ -211,7 +211,7 @@ export class HubBoardComponent {
 	 * Custom column placeholder template supplied via the `columnPlaceholder` structural directive.
 	 * Used to customize the appearance of the drop zone when dragging columns.
 	 */
-	readonly columnPlaceholderTpt = contentChild(ColumnPlaceholderDirective, {
+	readonly columnPlaceholderTpt = contentChild(HubColumnPlaceholderDirective, {
 		read: TemplateRef<unknown>
 	});
 
@@ -220,7 +220,7 @@ export class HubBoardComponent {
 	 * Used to customize the visual element that follows the cursor when dragging cards.
 	 * The template receives `card` (the dragged card) and `column` (the source column) as context.
 	 */
-	readonly cardDragPreviewTpt = contentChild(CardDragPreviewDirective, {
+	readonly cardDragPreviewTpt = contentChild(HubCardDragPreviewDirective, {
 		read: TemplateRef<unknown>
 	});
 
@@ -229,7 +229,7 @@ export class HubBoardComponent {
 	 * Used to customize the visual element that follows the cursor when dragging columns.
 	 * The template receives `column` (the dragged column) as context.
 	 */
-	readonly columnDragPreviewTpt = contentChild(ColumnDragPreviewDirective, {
+	readonly columnDragPreviewTpt = contentChild(HubColumnDragPreviewDirective, {
 		read: TemplateRef<unknown>
 	});
 

@@ -26,9 +26,9 @@ import { Directive, TemplateRef } from '@angular/core';
 	selector: '[columnFooterTpt]',
 	standalone: true
 })
-export class BoardColumnFooterDirective {
+export class HubBoardColumnFooterDirective {
 	/**
-	 * Creates a new BoardColumnFooterDirective instance.
+	 * Creates a new HubBoardColumnFooterDirective instance.
 	 *
 	 * @param templateRef - The template reference that contains the custom column footer layout
 	 */

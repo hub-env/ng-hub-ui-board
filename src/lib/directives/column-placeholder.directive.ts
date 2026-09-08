@@ -32,4 +32,4 @@ import { Directive } from '@angular/core';
 	selector: '[columnPlaceholder]',
 	standalone: true
 })
-export class ColumnPlaceholderDirective {}
+export class HubColumnPlaceholderDirective {}

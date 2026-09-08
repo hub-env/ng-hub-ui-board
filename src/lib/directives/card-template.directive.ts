@@ -23,9 +23,9 @@ import { Directive, TemplateRef } from '@angular/core';
 	selector: '[cardTpt]',
 	standalone: true
 })
-export class CardTemplateDirective {
+export class HubCardTemplateDirective {
 	/**
-	 * Creates a new CardTemplateDirective instance.
+	 * Creates a new HubCardTemplateDirective instance.
 	 *
 	 * @param templateRef - The template reference that contains the custom card layout
 	 */

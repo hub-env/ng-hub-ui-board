@@ -26,9 +26,9 @@ import { Directive, TemplateRef } from '@angular/core';
 	selector: '[columnDragPreview]',
 	standalone: true
 })
-export class ColumnDragPreviewDirective {
+export class HubColumnDragPreviewDirective {
 	/**
-	 * Creates a new ColumnDragPreviewDirective instance.
+	 * Creates a new HubColumnDragPreviewDirective instance.
 	 *
 	 * @param templateRef - The template reference that contains the custom drag preview layout
 	 */

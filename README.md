@@ -74,6 +74,8 @@ yarn add ng-hub-ui-board ng-hub-ui-utils
 
 **Note:** `@angular/cdk` is not required. The board uses the shared `ng-hub-ui-utils` native drag-and-drop core (a mandatory peer dependency since `22.1.0`) — there are no third-party UI or CDK dependencies.
 
+`ng-hub-ui-ds` is an **optional** peer dependency (`>=22.0.0`). Install it to give the board the shared `--hub-sys-*` token palette and dark mode; without it every token read falls back to the built-in default and the board renders unchanged.
+
 ## Quick Start
 
 Here’s a quick example to get you started with `ng-hub-ui-board` using the standalone component approach.
@@ -112,16 +114,16 @@ export const board = signal<Board>({
 import { Component } from '@angular/core';
 import {
 	HubBoardComponent,
-	CardTemplateDirective,
-	BoardColumnHeaderDirective,
-	BoardColumnFooterDirective,
+	HubCardTemplateDirective,
+	HubBoardColumnHeaderDirective,
+	HubBoardColumnFooterDirective,
 	BoardCard
 } from 'ng-hub-ui-board';
 
 @Component({
 	selector: 'board-demo',
 	standalone: true,
-	imports: [HubBoardComponent, CardTemplateDirective, BoardColumnHeaderDirective, BoardColumnFooterDirective],
+	imports: [HubBoardComponent, HubCardTemplateDirective, HubBoardColumnHeaderDirective, HubBoardColumnFooterDirective],
 	templateUrl: './board-demo.component.html'
 })
 export class BoardDemoComponent {
@@ -160,15 +162,15 @@ The component can be used in two ways:
 import { Component } from '@angular/core';
 import {
 	HubBoardComponent,
-	CardTemplateDirective,
-	BoardColumnHeaderDirective,
-	BoardColumnFooterDirective
+	HubCardTemplateDirective,
+	HubBoardColumnHeaderDirective,
+	HubBoardColumnFooterDirective
 } from 'ng-hub-ui-board';
 
 @Component({
 	selector: 'app-my-component',
 	standalone: true,
-	imports: [HubBoardComponent, CardTemplateDirective, BoardColumnHeaderDirective, BoardColumnFooterDirective],
+	imports: [HubBoardComponent, HubCardTemplateDirective, HubBoardColumnHeaderDirective, HubBoardColumnFooterDirective],
 	template: `
 		<hub-board [board]="board" (onCardClick)="handleCardClick($event)" (onCardMoved)="handleCardMoved($event)">
 			<!-- Templates go here -->
@@ -184,10 +186,10 @@ export class MyComponent {
 
 ```typescript
 import { NgModule } from '@angular/core';
-import { BoardModule } from 'ng-hub-ui-board';
+import { HubBoardModule } from 'ng-hub-ui-board';
 
 @NgModule({
-	imports: [BoardModule]
+	imports: [HubBoardModule]
 	// ... rest of the module configuration
 })
 export class AppModule {}
@@ -199,7 +201,7 @@ The component uses multiple templates for customization. If you're using the sta
 
 ### Standard Templates
 
-### Card Template (CardTemplateDirective)
+### Card Template (HubCardTemplateDirective)
 
 Used to customize how each card is rendered within the columns. This template gives you complete control over the card's appearance and structure.
 
@@ -216,7 +218,7 @@ Used to customize how each card is rendered within the columns. This template gi
 </ng-template>
 ```
 
-### Column Header Template (BoardColumnHeaderDirective)
+### Column Header Template (HubBoardColumnHeaderDirective)
 
 Used to customize the header of each column. Perfect for adding column-specific actions, showing card counts, or adding filtering options.
 
@@ -233,7 +235,7 @@ Used to customize the header of each column. Perfect for adding column-specific 
 </ng-template>
 ```
 
-### Column Footer Template (BoardColumnFooterDirective)
+### Column Footer Template (HubBoardColumnFooterDirective)
 
 Used to add a footer to each column. Useful for summary information, quick actions, or column-specific controls.
 
@@ -251,7 +253,7 @@ Used to add a footer to each column. Useful for summary information, quick actio
 
 ### Drag-and-Drop Templates
 
-#### Card Drag Preview Template (CardDragPreviewDirective)
+#### Card Drag Preview Template (HubCardDragPreviewDirective)
 
 Customize the visual element that follows the cursor when dragging cards. The template receives the dragged card and its source column as context.
 
@@ -272,7 +274,7 @@ Customize the visual element that follows the cursor when dragging cards. The te
 - `card`: The card being dragged
 - `column`: The source column of the card
 
-#### Card Placeholder Template (CardPlaceholderDirective)
+#### Card Placeholder Template (HubCardPlaceholderDirective)
 
 Customize the drop zone appearance when dragging cards between or within columns.
 
@@ -285,7 +287,7 @@ Customize the drop zone appearance when dragging cards between or within columns
 </ng-template>
 ```
 
-#### Column Drag Preview Template (ColumnDragPreviewDirective)
+#### Column Drag Preview Template (HubColumnDragPreviewDirective)
 
 Customize the visual element that follows the cursor when dragging columns. The template receives the dragged column as context.
 
@@ -302,7 +304,7 @@ Customize the visual element that follows the cursor when dragging columns. The 
 
 - `column`: The column being dragged
 
-#### Column Placeholder Template (ColumnPlaceholderDirective)
+#### Column Placeholder Template (HubColumnPlaceholderDirective)
 
 Customize the drop zone appearance when reordering columns.
 
@@ -682,7 +684,7 @@ Here are some common issues and how to resolve them:
 
 - **Import directives**: When using standalone components, import the template directives:
     ```typescript
-    imports: [HubBoardComponent, CardTemplateDirective, BoardColumnHeaderDirective];
+    imports: [HubBoardComponent, HubCardTemplateDirective, HubBoardColumnHeaderDirective];
     ```
 - **Template syntax**: Verify you're using the correct template selectors (`cardTpt`, `columnHeaderTpt`, `columnFooterTpt`)
 

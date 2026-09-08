@@ -1,7 +1,7 @@
 import { Component, TemplateRef, viewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardTemplateDirective } from './card-template.directive';
+import { HubCardTemplateDirective } from './card-template.directive';
 
 /**
  * Test component to verify the directive functionality
@@ -31,14 +31,14 @@ import { CardTemplateDirective } from './card-template.directive';
 		</ng-template>
 	`,
 	standalone: true,
-	imports: [CardTemplateDirective]
+	imports: [HubCardTemplateDirective]
 })
 class TestComponent {
-	readonly cardDirective = viewChild.required('testTemplate', { read: CardTemplateDirective });
+	readonly cardDirective = viewChild.required('testTemplate', { read: HubCardTemplateDirective });
 
 	readonly templateRef = viewChild.required('testTemplate', { read: TemplateRef });
 
-	readonly anotherCardDirective = viewChild.required('anotherTemplate', { read: CardTemplateDirective });
+	readonly anotherCardDirective = viewChild.required('anotherTemplate', { read: HubCardTemplateDirective });
 
 	readonly regularTemplateRef = viewChild.required('regularTemplate', { read: TemplateRef });
 
@@ -60,10 +60,10 @@ class TestComponent {
 	};
 }
 
-describe('CardTemplateDirective', () => {
+describe('HubCardTemplateDirective', () => {
 	let component: TestComponent;
 	let fixture: ComponentFixture<TestComponent>;
-	let directive: CardTemplateDirective;
+	let directive: HubCardTemplateDirective;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -81,8 +81,8 @@ describe('CardTemplateDirective', () => {
 			expect(directive).toBeTruthy();
 		});
 
-		it('should be a CardTemplateDirective instance', () => {
-			expect(directive).toBeInstanceOf(CardTemplateDirective);
+		it('should be a HubCardTemplateDirective instance', () => {
+			expect(directive).toBeInstanceOf(HubCardTemplateDirective);
 		});
 
 		it('should have templateRef property', () => {

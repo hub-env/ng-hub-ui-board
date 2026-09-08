@@ -33,4 +33,4 @@ import { Directive } from '@angular/core';
 	selector: '[cardPlaceholder]',
 	standalone: true
 })
-export class CardPlaceholderDirective {}
+export class HubCardPlaceholderDirective {}

@@ -4,13 +4,18 @@ import { Pipe, PipeTransform } from '@angular/core';
  * Converts a hexadecimal color string into its inverted counterpart, offering both
  * high-contrast black/white and full-spectrum inversion modes.
  *
+ * The name is qualified with the library because `ng-hub-ui-forms` publishes a
+ * `HubInvertColorPipe` of its own; the two could not be imported into the same file
+ * otherwise. That one resolves any CSS colour and never throws, so prefer it when the
+ * application already depends on `ng-hub-ui-forms`.
+ *
  * @publicApi
  */
 @Pipe({
-	name: 'invertColor',
+	name: 'hubBoardInvertColor',
 	standalone: true
 })
-export class InvertColorPipe implements PipeTransform {
+export class HubBoardInvertColorPipe implements PipeTransform {
 	/**
 	 * Inverts a HEX color value.
 	 *
@@ -55,3 +60,16 @@ export class InvertColorPipe implements PipeTransform {
 		return `#${invertedR}${invertedG}${invertedB}`;
 	}
 }
+
+/**
+ * @deprecated Renamed to `HubBoardInvertColorPipe` (template name `hubBoardInvertColor`),
+ * and removed under this name in **23.0.0**. `invertColor` is an unprefixed name in the
+ * application's own template namespace, which is not the library's to take. Behaviour is
+ * unchanged: this subclass exists only so templates written against the old name keep
+ * rendering until the removal.
+ */
+@Pipe({
+	name: 'invertColor',
+	standalone: true
+})
+export class InvertColorPipe extends HubBoardInvertColorPipe {}
