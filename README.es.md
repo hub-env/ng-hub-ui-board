@@ -13,6 +13,7 @@ Este paquete forma parte de [Hub UI](https://hubui.dev/en/), una colección de b
 - Documentación: https://hubui.dev/en/board/overview/
 - Ejemplos en vivo: https://hubui.dev/en/board/examples/
 - Hub UI: https://hubui.dev/en/
+- Hub UI en GitHub (incidencias, roadmap y cómo contribuir): https://github.com/hub-env/hub-ui
 
 ## 🧩 Familia de bibliotecas `ng-hub-ui`
 
@@ -703,7 +704,7 @@ Aquí tienes algunos problemas comunes y cómo resolverlos:
 - **Fugas de memoria**: Asegura una limpieza adecuada de los listeners de eventos y las suscripciones
 - **Detección de cambios**: Usa la estrategia de detección de cambios `OnPush` siempre que sea posible
 
-Si los problemas persisten, abre una incidencia en: https://github.com/carlos-morcillo/ng-hub-ui-board/issues
+Si los problemas persisten, abre una incidencia en: https://github.com/hub-env/hub-ui/issues
 
 ## Contribuir
 

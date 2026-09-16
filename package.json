@@ -67,7 +67,7 @@
 	"author": "Carlos Morcillo <carlos.morcillo@me.com> (https://www.carlosmorcillo.com)",
 	"maintainers": [
 		{
-			"name": "Carlos Morcillo Fern\u00e1ndez",
+			"name": "Carlos Morcillo Fernández",
 			"email": "carlos.morcillo@me.com",
 			"url": "https://www.carlosmorcillo.com"
 		}
@@ -75,10 +75,10 @@
 	"homepage": "https://hubui.dev/en/board/overview/",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/carlos-morcillo/ng-hub-ui-board.git"
+		"url": "git+https://github.com/hub-env/ng-hub-ui-board.git"
 	},
 	"bugs": {
-		"url": "https://github.com/carlos-morcillo/ng-hub-ui-board/issues",
+		"url": "https://github.com/hub-env/hub-ui/issues",
 		"email": "carlos.morcillo@me.com"
 	},
 	"funding": {
@@ -98,6 +98,6 @@
 		"save": "dependencies"
 	},
 	"contributors": [
-		"Carlos Morcillo Fern\u00e1ndez <carlos.morcillo@me.com>"
+		"Carlos Morcillo Fernández <carlos.morcillo@me.com>"
 	]
 }
