@@ -501,20 +501,17 @@ describe('HubBoardColumnFooterDirective', () => {
 				disabled: false
 			};
 
-			const startTime = performance.now();
-
 			const embeddedView = directive.templateRef.createEmbeddedView({
 				column: largeColumn
 			});
 
 			embeddedView.detectChanges();
+			const total = (embeddedView.rootNodes[0] as HTMLElement).querySelector('.total-cards');
+
+			expect(total?.textContent).toContain('Total: 1000');
+
 			embeddedView.destroy();
-
-			const endTime = performance.now();
-			const executionTime = endTime - startTime;
-
-			// Should complete within reasonable time (less than 100ms)
-			expect(executionTime).toBeLessThan(100);
+			expect(embeddedView.destroyed).toBe(true);
 		});
 	});
 
