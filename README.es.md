@@ -3,8 +3,10 @@
 **Español** | [English](./README.md)
 
 [![NPM Version](https://img.shields.io/npm/v/ng-hub-ui-board.svg)](https://www.npmjs.com/package/ng-hub-ui-board)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Angular](https://img.shields.io/badge/Angular-22-red.svg)](https://angular.dev)
 
-> **⚠️ CAMBIOS IMPORTANTES:** La versión 21.1.0 elimina el punto de entrada de hojas de estilo público. Los estilos ahora se encapsulan dentro del componente. Lee el archivo [BREAKING_CHANGES.md](./BREAKING_CHANGES.md) antes de actualizar.
+> Componente de tablero Kanban para Angular con arrastrar y soltar al estilo Trello, columnas personalizables y eventos sencillos de manejar.
 
 ## Documentación y ejemplos en vivo
 
@@ -76,6 +78,10 @@ yarn add ng-hub-ui-board ng-hub-ui-utils
 **Nota:** `@angular/cdk` no es necesario. El tablero usa el núcleo nativo de arrastrar y soltar de `ng-hub-ui-utils` (una peer dependency obligatoria desde `22.1.0`) — no hay dependencias de UI de terceros ni CDK.
 
 `ng-hub-ui-ds` es una peer dependency **opcional** (`>=22.0.0`). Instálala para dar al tablero la paleta compartida de tokens `--hub-sys-*` y el modo oscuro; sin ella cada lectura de token cae en su valor por defecto y el tablero se dibuja igual.
+
+## Actualizar desde 21.0.x
+
+La versión `21.1.0` eliminó el punto de entrada público de hojas de estilo: los estilos viven ahora dentro del componente. Lee [BREAKING_CHANGES.md](./BREAKING_CHANGES.md) antes de actualizar desde una versión anterior.
 
 ## Inicio rápido
 

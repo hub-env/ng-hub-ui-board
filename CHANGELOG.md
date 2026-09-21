@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [22.6.2] - 2026-09-21
+
+### Changed
+
+- **The README says what the board is before it warns about anything.** The page opened on the
+  21.1.0 breaking-change notice, so a reader arriving from npm was handed a migration step before a
+  description. The header now carries the one-line description and the licence and Angular badges
+  the rest of the family shows, and the notice moved to an `Upgrading from 21.0.x` section below
+  the installation instructions. `README.es.md` follows the same shape. Documentation only: no
+  code, types or styles change.
+
 ## [22.6.1] - 2026-09-16
 
 ### Changed

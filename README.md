@@ -3,8 +3,10 @@
 [Español](./README.es.md) | **English**
 
 [![NPM Version](https://img.shields.io/npm/v/ng-hub-ui-board.svg)](https://www.npmjs.com/package/ng-hub-ui-board)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Angular](https://img.shields.io/badge/Angular-22-red.svg)](https://angular.dev)
 
-> **⚠️ BREAKING CHANGES:** Version 21.1.0 removes the public stylesheet entry point. Styles are now encapsulated within the component. Please read the [BREAKING_CHANGES.md](./BREAKING_CHANGES.md) file before upgrading.
+> An Angular Kanban board component with Trello-like drag-and-drop, customizable columns, and straightforward event handling.
 
 ## Documentation and Live Examples
 
@@ -76,6 +78,10 @@ yarn add ng-hub-ui-board ng-hub-ui-utils
 **Note:** `@angular/cdk` is not required. The board uses the shared `ng-hub-ui-utils` native drag-and-drop core (a mandatory peer dependency since `22.1.0`) — there are no third-party UI or CDK dependencies.
 
 `ng-hub-ui-ds` is an **optional** peer dependency (`>=22.0.0`). Install it to give the board the shared `--hub-sys-*` token palette and dark mode; without it every token read falls back to the built-in default and the board renders unchanged.
+
+## Upgrading from 21.0.x
+
+`21.1.0` removed the public stylesheet entry point: the styles now live inside the component. Read [BREAKING_CHANGES.md](./BREAKING_CHANGES.md) before upgrading from an earlier version.
 
 ## Quick Start
 
