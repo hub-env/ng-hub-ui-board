@@ -1,13 +1,13 @@
 {
 	"name": "ng-hub-ui-board",
-	"version": "22.6.2",
+	"version": "22.6.3",
 	"description": "An Angular-based Kanban board component with Trello-like drag-and-drop, customizable columns, and straightforward event handling.",
 	"main": "bundles/ng-hub-ui-board.umd.js",
 	"module": "fesm2022/ng-hub-ui-board.mjs",
 	"typings": "index.d.ts",
 	"peerDependencies": {
-		"@angular/common": ">=18.0.0",
-		"@angular/core": ">=18.0.0",
+		"@angular/common": ">=17.2.0",
+		"@angular/core": ">=17.2.0",
 		"ng-hub-ui-ds": ">=22.0.0",
 		"ng-hub-ui-utils": ">=22.1.0"
 	},
@@ -64,10 +64,10 @@
 		"ui-library",
 		"ng-hub-ui"
 	],
-	"author": "Carlos Morcillo Fernández <carlos.morcillo@me.com> (https://www.carlosmorcillo.com)",
+	"author": "Carlos Morcillo Fern\u00e1ndez <carlos.morcillo@me.com> (https://www.carlosmorcillo.com)",
 	"maintainers": [
 		{
-			"name": "Carlos Morcillo Fernández",
+			"name": "Carlos Morcillo Fern\u00e1ndez",
 			"email": "carlos.morcillo@me.com",
 			"url": "https://www.carlosmorcillo.com"
 		}
@@ -98,6 +98,6 @@
 		"save": "dependencies"
 	},
 	"contributors": [
-		"Carlos Morcillo Fernández <carlos.morcillo@me.com>"
+		"Carlos Morcillo Fern\u00e1ndez <carlos.morcillo@me.com>"
 	]
 }
