@@ -2,6 +2,18 @@
 
 This document details the breaking changes introduced in major versions of `ng-hub-ui-board` and how to migrate your codebase.
 
+## [22.7.0] - 2026-09-23
+
+### Angular below 17.3.0 is no longer supported
+
+- **Change**: the `@angular/*` peer ranges move from `>=17.2.0` to `>=17.3.0`.
+
+- **Why**: Its published `.d.ts` names `InputSignalWithTransform` or `OutputEmitterRef`, which Angular did not ship until 17.3.
+
+- **Impact — an application below 17.3.0 gets a peer warning where it used to get a build error.**
+  Nothing that worked stops working: those versions never compiled against this package. Upgrade
+  Angular to 17.3.0 or stay on the previous release.
+
 ## [22.6.0] - 2026-09-08
 
 ### The module and the seven template directives are renamed with the `Hub` prefix
@@ -24,7 +36,7 @@ This document details the breaking changes introduced in major versions of `ng-h
 
 - **What happens if you do nothing**: today, nothing. All eight old names are still exported as
   `@deprecated` aliases resolving to the very same classes, so imports keep compiling, `imports:
-  [...]` arrays keep matching and the templates keep being picked up by `contentChild`. They are
+[...]` arrays keep matching and the templates keep being picked up by `contentChild`. They are
   removed in **23.0.0**, the release that moves this family to Angular 23, and that is the version
   where the import stops compiling.
 
@@ -35,11 +47,7 @@ This document details the breaking changes introduced in major versions of `ng-h
     import { HubBoardComponent, CardTemplateDirective, BoardColumnHeaderDirective } from 'ng-hub-ui-board';
 
     // After
-    import {
-    	HubBoardComponent,
-    	HubCardTemplateDirective,
-    	HubBoardColumnHeaderDirective
-    } from 'ng-hub-ui-board';
+    import { HubBoardComponent, HubCardTemplateDirective, HubBoardColumnHeaderDirective } from 'ng-hub-ui-board';
     ```
 
     ```html
@@ -66,7 +74,7 @@ This document details the breaking changes introduced in major versions of `ng-h
   alias for it — a pipe's template name travels with its class, so keeping the old name working
   needs a second class rather than a second export. It is removed in **23.0.0**.
 
-- **Migration**: this one is two edits, not one. Change the import *and* the template, because a
+- **Migration**: this one is two edits, not one. Change the import _and_ the template, because a
   file that imports `HubBoardInvertColorPipe` and still writes `| invertColor` has no pipe under
   that name and fails to compile.
 

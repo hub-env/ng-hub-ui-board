@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [22.7.0] - 2026-09-23
+
+### Changed
+
+- **BREAKING — the Angular floor rises from `17.2.0` to `17.3.0`.** The old range was
+  measured from the source alone, and its published `.d.ts` names `InputSignalWithTransform` or `OutputEmitterRef`, which Angular did not ship until 17.3. An application below the new floor could install this
+  package and then fail to build, with an error that pointed at Angular rather than here; it now
+  gets the peer warning it should always have had. Nothing that worked stops working. See
+  `BREAKING_CHANGES.md`.
+- **The floor is proved by running it now, not only derived.** `npm run floors:matrix` builds a real
+  project pinned to the oldest Angular this package claims, installs it there, typechecks the
+  published types against that version's `@angular/*` and runs that version's linker over the
+  compiled output. It is what found this.
+
 ## [22.6.3] - 2026-09-23
 
 ### Changed
@@ -149,10 +163,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **Keyboard accessibility — cards can now be reordered without a pointer.** Every enabled card is a tab stop (`tabindex="0"`; no roving tabindex — the simple, consistent model). With a card focused:
-	- `Space` / `Enter` **grabs** the card (visual `hub-board__card--grabbed` state styled with the existing placeholder tokens, so it recolours per `variant`).
-	- While grabbed, `ArrowUp` / `ArrowDown` move it within its column and `ArrowLeft` / `ArrowRight` move it to the adjacent column, honouring the **same rules as the drag path** (the target column's `predicate` and `cardSortingDisabled`). Each move is applied live and focus follows the card.
-	- `Space` / `Enter` **drops** (commits) the move, emitting `onCardMoved` with the **exact same `CardDragDropEvent` payload shape as a pointer drop** (`previousIndex` / `currentIndex` refer to the grab origin and the final position; `previousContainer` / `container` are the origin and final columns). Dropping a card that was never moved releases the grab without emitting.
-	- `Escape` **cancels**, restoring the card to its original position with no event emitted.
+    - `Space` / `Enter` **grabs** the card (visual `hub-board__card--grabbed` state styled with the existing placeholder tokens, so it recolours per `variant`).
+    - While grabbed, `ArrowUp` / `ArrowDown` move it within its column and `ArrowLeft` / `ArrowRight` move it to the adjacent column, honouring the **same rules as the drag path** (the target column's `predicate` and `cardSortingDisabled`). Each move is applied live and focus follows the card.
+    - `Space` / `Enter` **drops** (commits) the move, emitting `onCardMoved` with the **exact same `CardDragDropEvent` payload shape as a pointer drop** (`previousIndex` / `currentIndex` refer to the grab origin and the final position; `previousContainer` / `container` are the origin and final columns). Dropping a card that was never moved releases the grab without emitting.
+    - `Escape` **cancels**, restoring the card to its original position with no event emitted.
 - **ARIA semantics.** The board host exposes `role="list"` with an `aria-label` driven by the new optional `boardLabel` input (defaults to `'Board'`); each column container is a `role="group"` labelled by its title with a stable, board-scoped id; each column body is a `role="list"` and each card a `role="listitem"`.
 - **Screen-reader announcer.** A visually hidden `aria-live="polite"` region announces grab ("Card X grabbed. Position N of M in Y…"), every move ("moved to Y, position N of M"), drop, cancel, and rejected targets ("cannot be moved to Y"). Each focusable card also points (`aria-describedby`) to a hidden usage hint. `aria-grabbed` is intentionally not used (deprecated in ARIA 1.1).
 - New optional `boardLabel` input on `<hub-board>` — the accessible name of the board container.
@@ -220,7 +234,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Aligned with Angular 22.
 - README documentation standardized.
-
 
 ## [21.1.2] - 2026-06-14
 
