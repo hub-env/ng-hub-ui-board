@@ -78,7 +78,7 @@ yarn add ng-hub-ui-board ng-hub-ui-utils
 
 **Note:** `@angular/cdk` is not required. The board uses the shared `ng-hub-ui-utils` native drag-and-drop core (a mandatory peer dependency since `22.1.0`) — there are no third-party UI or CDK dependencies.
 
-`ng-hub-ui-ds` is an **optional** peer dependency (`>=22.0.0`). Install it to give the board the shared `--hub-sys-*` token palette and dark mode; without it every token read falls back to the built-in default and the board renders unchanged.
+`ng-hub-ui-ds` is an **optional** peer dependency (`>=22.14.1`). Install it to give the board the shared `--hub-sys-*` token palette and dark mode; without it every token read falls back to the built-in default and the board renders unchanged.
 
 ## Upgrading from 21.0.x
 

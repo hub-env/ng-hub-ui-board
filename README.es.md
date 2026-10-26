@@ -78,7 +78,7 @@ yarn add ng-hub-ui-board ng-hub-ui-utils
 
 **Nota:** `@angular/cdk` no es necesario. El tablero usa el núcleo nativo de arrastrar y soltar de `ng-hub-ui-utils` (una peer dependency obligatoria desde `22.1.0`) — no hay dependencias de UI de terceros ni CDK.
 
-`ng-hub-ui-ds` es una peer dependency **opcional** (`>=22.0.0`). Instálala para dar al tablero la paleta compartida de tokens `--hub-sys-*` y el modo oscuro; sin ella cada lectura de token cae en su valor por defecto y el tablero se dibuja igual.
+`ng-hub-ui-ds` es una peer dependency **opcional** (`>=22.14.1`). Instálala para dar al tablero la paleta compartida de tokens `--hub-sys-*` y el modo oscuro; sin ella cada lectura de token cae en su valor por defecto y el tablero se dibuja igual.
 
 ## Actualizar desde 21.0.x
 

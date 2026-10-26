@@ -1,6 +1,6 @@
 :root,
 :host {
-	--hub-board-container-color: var(--hub-sys-text-primary, #212529);
+	--hub-board-container-color: var(--hub-sys-text-body, #212529);
 	--hub-board-container-bg: var(--hub-sys-surface-page, #fff);
 	--hub-board-border-width: var(--hub-ref-border-width, 1px);
 	--hub-board-border-color: var(--hub-sys-border-color-default, #dee2e6);
@@ -164,7 +164,7 @@
 		height: var(--hub-board-column-height, 100%);
 		max-height: 100%;
 		width: var(--hub-board-column-width, 256px);
-		color: var(--hub-board-container-color, var(--hub-sys-text-primary, #212529));
+		color: var(--hub-board-container-color, var(--hub-sys-text-body, #212529));
 		word-wrap: break-word;
 		background-color: var(--hub-board-column-bg, var(--hub-sys-surface-page, #fff));
 		background-clip: border-box;
@@ -252,7 +252,7 @@
 		flex-direction: column;
 		min-width: 0;
 		height: var(--hub-board-card-height, auto);
-		color: var(--hub-board-container-color, var(--hub-sys-text-primary, #212529));
+		color: var(--hub-board-container-color, var(--hub-sys-text-body, #212529));
 		word-wrap: break-word;
 		background-color: var(--hub-board-card-bg, var(--hub-sys-surface-page, #fff));
 		background-clip: border-box;

@@ -53,7 +53,7 @@ You can now remove this import. The component handles its own styling automatica
 | `--hub-ref-space-3` | `1rem` |
 | `--hub-ref-radius-md` | `0.375rem` |
 | `--hub-ref-border-width` | `1px` |
-| `--hub-sys-text-primary` | `#212529` |
+| `--hub-sys-text-body` | `#212529` |
 | `--hub-sys-text-muted` | `#6c757d` |
 | `--hub-sys-surface-page` | `#fff` |
 | `--hub-sys-surface-elevated` | `rgba(0, 0, 0, 0.03)` |
@@ -71,7 +71,7 @@ These variables are defined in the component's `:host` and can be overridden.
 
 | Variable | Default |
 |---|---|
-| `--hub-board-container-color` | `var(--hub-sys-text-primary, #212529)` |
+| `--hub-board-container-color` | `var(--hub-sys-text-body, #212529)` |
 | `--hub-board-container-bg` | `var(--hub-sys-surface-page, #fff)` |
 | `--hub-board-border-width` | `var(--hub-ref-border-width, 1px)` |
 | `--hub-board-border-color` | `var(--hub-sys-border-color-default, #dee2e6)` |
